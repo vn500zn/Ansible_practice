@@ -1,0 +1,16 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+  - name: i want to install apache2 on ubuntu
+    apt:
+     name: apache2
+     state: present
+
+  - name: I want to restart the apache2 server on ubuntu
+    service:
+     name: apache2
+     state: restarted
+     
+
+
