@@ -2,17 +2,30 @@
 - hosts: all
   become: yes
   tasks:
-  - name: i want to install apache2 on ubuntu
+  - name: i want to install webserver on ubuntu
     apt:
      name: apache2
      state: present
     when: ansible_os_family=="Debian"
 
-  - name: I want to restart the apache2 server on ubuntu
+  - name: I want to restart the webserver server on ubuntu
     service:
      name: apache2
-     state: restarted
+     state: started
     when: ansible_os_family=="Debian"
+
+  - name: I want to install web server on RedHat
+    yum:
+     name: httpd
+     state: present
+    when: ansible_os_family=="RedHat"
+
+  - name: I want to start webserver in RedHat
+    service:
+      name: httpd
+      state: started
+    when: ansible_os_family=="RedHat"
+
 
 
 
